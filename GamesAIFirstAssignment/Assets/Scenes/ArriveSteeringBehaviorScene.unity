@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -309,8 +309,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1366677376}
   - component: {fileID: 1366677375}
-  - component: {fileID: 1366677378}
   - component: {fileID: 1366677377}
+  - component: {fileID: 1366677378}
   m_Layer: 0
   m_Name: MobileParticle
   m_TagString: Untagged
@@ -360,7 +360,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.24647617, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.22113991, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -426,8 +426,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetParticle: {fileID: 1266243947}
   maxSpeed: 5
-  slowingDistance: 10
+  slowingRadius: 13
   stoppingDistance: 0.3
+  acceleration: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
