@@ -225,7 +225,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -240,7 +240,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -252,7 +252,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -266,14 +266,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 386939448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f950d8510a0cc34c8ba61ac5307167c, type: 3}
+  m_Script: {fileID: 11500000, guid: 648b41320926fb14697db1a69cbbc5a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 386939448}
-  gravityStrength: 5
-  dragCoefficient: 0.5
-  cubeSize: 2
-  bounceFactor: 0.8
+  gravity: 9.81
+  resistance: 0.1
+  damping: 0.5
 --- !u!1 &1343097906
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,8 +357,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343097906}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.037227668, y: 0.118141666, z: -0.004432545, w: 0.99228877}
-  m_LocalPosition: {x: -2.72, y: 0.5, z: -9.16}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -4.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
