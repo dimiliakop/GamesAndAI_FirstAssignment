@@ -56,8 +56,8 @@ public class ArriveBehavior : MonoBehaviour
             else
             {
                 arrivingParticle.velocity = Vector2.zero;
-                //UnityEditor.EditorApplication.isPlaying = false;
-                //Application.Quit();
+                UnityEditor.EditorApplication.isPlaying = false;
+                Application.Quit();
             }
         }
     }
