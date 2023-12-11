@@ -48,6 +48,12 @@ public class FleeBehavior : MonoBehaviour
         steering /= Mass;
 
         velocity = Vector3.ClampMagnitude(velocity + steering, MaxVelocity);
+
+        if (velocity != Vector3.zero) // Avoids making the object look at the target when it's not moving
+        {
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg + 90;
+            transform.rotation =  Quaternion.Euler(0, 0, angle);
+        }
     }
 
     private void UpdateColor()
@@ -60,10 +66,9 @@ public class FleeBehavior : MonoBehaviour
 
     private void UpdatePosition()
     {
-        distanceSpeedRatio = Mathf.Pow(euclideanDistance / distanceFromCenter, 3);
-        transform.position += velocity * Time.deltaTime * -1 / distanceSpeedRatio;
+        distanceSpeedRatio = Mathf.Pow(euclideanDistance / distanceFromCenter, 3) + 0.00001f;// To solve first frame division by zero
+        transform.position += velocity * Time.deltaTime * -1 / distanceSpeedRatio; 
     }
-
     private void DrawDebugRays()
     {
         Debug.DrawRay(transform.position, velocity.normalized * 2, Color.green);

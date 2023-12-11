@@ -47,6 +47,12 @@ public class SeekBehavior : MonoBehaviour
         steering /= Mass;
 
         velocity = Vector3.ClampMagnitude(velocity + steering, MaxVelocity);
+        // Make the object face the target
+        if (velocity != Vector3.zero) // Avoids making the object look at the target when it's not moving
+        {
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg -90;
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     private void UpdateColor()
