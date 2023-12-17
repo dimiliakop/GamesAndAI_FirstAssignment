@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackDragon
       objectReference: {fileID: 0}
+    - target: {fileID: 4062168869205722402, guid: 457b0416bb7fb866892da45b82b17018, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -419,10 +423,10 @@ MonoBehaviour:
   allBirds: []
   airLimit: {x: 20, y: 20, z: 20}
   goalPos: {x: 0, y: 0, z: 0}
-  minSpeed: 1.07
-  maxSpeed: 10.5
-  neighbourDistance: 20.5
-  rotationSpeed: 8.4
+  minSpeed: 4
+  maxSpeed: 14.4
+  neighbourDistance: 10.9
+  rotationSpeed: 12.2
 --- !u!4 &1083671230
 Transform:
   m_ObjectHideFlags: 0
