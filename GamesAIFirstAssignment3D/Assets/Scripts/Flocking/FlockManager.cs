@@ -42,7 +42,7 @@ public class FlockManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Random.Range(0, 100) < 5)
+        if (Random.Range(0, 100) < 1)
         {
             goalPos = this.transform.position + new Vector3(Random.Range(-airLimit.x * 100, airLimit.x * 100),
                                                             Random.Range(-airLimit.y * 100, airLimit.y * 100),
