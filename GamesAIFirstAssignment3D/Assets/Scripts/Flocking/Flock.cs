@@ -18,6 +18,10 @@ public class Flock : MonoBehaviour
     void Start()
     {
         speed = Random.Range(FlockManager.FM.minSpeed, FlockManager.FM.maxSpeed);
+        if (predatorPrefab == null)
+        {
+            predatorPrefab = GameObject.FindWithTag("Player");
+        }
 
     }
 
@@ -27,10 +31,6 @@ public class Flock : MonoBehaviour
 
 
         Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.airLimit * 100);
-        if (predatorPrefab == null)
-        {
-            predatorPrefab = GameObject.FindWithTag("Player");
-        }
 
         turning = isTurning(b);
 
@@ -132,7 +132,7 @@ public class Flock : MonoBehaviour
             if (Vector3.Distance(transform.position, predatorPrefab.transform.position) <= distance_threshold_to_flee)
             {
                 FleePredator();
-                speed = speed * 3;
+                speed = speed * 2;
 
             }
             else
