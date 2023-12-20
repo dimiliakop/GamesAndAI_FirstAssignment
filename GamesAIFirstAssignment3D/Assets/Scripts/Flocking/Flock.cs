@@ -7,7 +7,13 @@ public class Flock : MonoBehaviour
 
     float speed;
 
+
     bool turning = false;
+
+    private GameObject predatorPrefab = null;
+
+    private float distance_threshold_to_flee = 30.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +24,13 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.airLimit * 2);
+
+
+        Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.airLimit * 100);
+        if (predatorPrefab == null)
+        {
+            predatorPrefab = GameObject.FindWithTag("Player");
+        }
 
         turning = isTurning(b);
 
@@ -116,13 +128,39 @@ public class Flock : MonoBehaviour
                 speed = FlockManager.FM.maxSpeed;
             }
 
-            Vector3 direction = (vcentre + vavoid) - transform.position;
-            if (direction != Vector3.zero)
+
+            if (Vector3.Distance(transform.position, predatorPrefab.transform.position) <= distance_threshold_to_flee)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(direction),
-                    FlockManager.FM.rotationSpeed * Time.deltaTime);
+                FleePredator();
+                speed = speed * 3;
+
             }
+            else
+            {
+                Vector3 direction = (vcentre + vavoid) - transform.position;
+
+                if (direction != Vector3.zero)
+                {
+                    transform.rotation = Quaternion.Slerp(transform.rotation,
+                        Quaternion.LookRotation(direction),
+                        FlockManager.FM.rotationSpeed * Time.deltaTime);
+
+
+                }
+
+            }
+
+
         }
+    }
+
+
+    private void FleePredator()
+    {
+        Vector3 direction = predatorPrefab.transform.position - this.transform.position; // Notice the swapped positions
+        direction = -direction; // Negate the direction to make the flock turn away from the predator
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation,
+        Quaternion.LookRotation(direction),
+        FlockManager.FM.rotationSpeed * Time.deltaTime);
     }
 }
