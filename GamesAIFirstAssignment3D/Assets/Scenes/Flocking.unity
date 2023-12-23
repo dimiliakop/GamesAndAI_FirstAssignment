@@ -423,10 +423,17 @@ MonoBehaviour:
   allBirds: []
   airLimit: {x: 10, y: 10, z: 10}
   goalPos: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+  minSpeed: 4
+  maxSpeed: 14.4
+  neighbourDistance: 10.9
+  rotationSpeed: 12.2
+=======
   minSpeed: 2.49
   maxSpeed: 8.1
   neighbourDistance: 9.4
   rotationSpeed: 11.7
+>>>>>>> dev-pment
 --- !u!4 &1083671230
 Transform:
   m_ObjectHideFlags: 0
