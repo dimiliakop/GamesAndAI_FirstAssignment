@@ -10,29 +10,19 @@ public class AdditionalFleeBehavior : MonoBehaviour
     public float MaxVelocity = 3;
     public float MaxForce = 15;
     private Vector3 velocity;
-    private float distanceFromCenter = 5;
-    private float distanceSpeedRatio;
+    private Vector3 velocitySeek;
+    private Vector3 velocityFlee;
+    private float distanceFromCenter = 3;
+    private float distanceSpeedRatioFlee;
+    private float distanceSpeedRatioSeek;
     private float euclideanDistance;
     private Vector3 desiredVelocity;
-
-    void Start()
-    {
-        //InitializeVariables();
-    }
 
     void Update()
     {
         UpdateSteering();
         UpdatePosition();
     }
-
-    //private void InitializeVariables()
-    //{
-      //  TargetParticleMovement targetParticleComponent = targetParticle.GetComponent<TargetParticleMovement>();
-    //    transform.position = new Vector2(targetParticle.center.x, targetParticle.center.y);
-    //    velocity = Vector3.zero;
-    //    distanceFromCenter = targetParticleComponent.distanceFromCenter;
-    //}
 
     private void UpdateSteering()
     {
@@ -43,24 +33,24 @@ public class AdditionalFleeBehavior : MonoBehaviour
         steering = Vector3.ClampMagnitude(steering, MaxForce);
         steering /= Mass;
 
-        velocity = Vector3.ClampMagnitude(velocity + steering, MaxVelocity);
+        velocityFlee = Vector3.ClampMagnitude(velocity + steering, MaxVelocity);
+        velocitySeek = Vector3.ClampMagnitude(velocity - steering, MaxVelocity);
     }
 
     private void UpdatePosition()
     {
         euclideanDistance = Vector3.Distance(transform.position, targetParticle.transform.position);
-        distanceSpeedRatio = Mathf.Pow(euclideanDistance / distanceFromCenter, 3);
-        if(euclideanDistance < distanceFromCenter)
+        distanceSpeedRatioFlee = Mathf.Pow(euclideanDistance / distanceFromCenter, 3);
+        distanceSpeedRatioSeek = Mathf.Pow(euclideanDistance / distanceFromCenter, 1);
+
+        if (euclideanDistance < distanceFromCenter)
         {
-            transform.position += velocity * Time.deltaTime * -1 / distanceSpeedRatio;
+            transform.position += velocityFlee * Time.deltaTime * -1 / distanceSpeedRatioFlee;
         }
-        else if(euclideanDistance > distanceFromCenter)
+        else if (euclideanDistance > distanceFromCenter)
         {
-            transform.position -= velocity * Time.deltaTime * -1 / distanceSpeedRatio;
+            transform.position -= velocitySeek * Time.deltaTime * distanceSpeedRatioSeek;
         }
-        else
-        {
-            transform.position = velocity * Time.deltaTime * -1 / distanceSpeedRatio;
-        }
+
     }
 }
